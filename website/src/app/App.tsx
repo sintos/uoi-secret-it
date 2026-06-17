@@ -136,12 +136,12 @@ export default function App() {
               <span className="text-base-content/70">
                 &copy; 2014&ndash;{new Date().getFullYear()}{' '}
                 <a
-                  href="https://yopass.se"
+                  href="https://it.uoi.gr"
                   className="text-primary hover:text-primary-focus font-medium transition-colors duration-200 underline decoration-dotted underline-offset-4 hover:decoration-solid"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Yopass
+                  Μονάδα Ψηφιακής Διακυβέρνησης - Πανεπιστήμιο Ιωαννίνων
                 </a>
               </span>
             </div>
