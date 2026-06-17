@@ -31,7 +31,7 @@ export interface Config {
 const defaultConfig: Config = {
   DISABLE_UPLOAD: false,
   READ_ONLY: false,
-  DISABLE_FEATURES: true,
+  DISABLE_FEATURES: false,
   PREFETCH_SECRET: true,
   NO_LANGUAGE_SWITCHER: false,
   FORCE_ONETIME_SECRETS: false,
@@ -41,6 +41,8 @@ const defaultConfig: Config = {
   REQUIRE_AUTH: false,
   SECRET_REQUESTS: false,
   READ_RECEIPTS: false,
+  APP_NAME: 'Secret.it - Πανεπιστήμιο Ιωαννίνων',
+  LOGO_URL: '/uoi-logo.png',
 };
 
 type GlobalWithCache = typeof globalThis & {

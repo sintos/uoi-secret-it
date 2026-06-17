@@ -6,6 +6,7 @@ import { useDateFormat } from '@shared/hooks/useDateFormat';
 import { formatDateTime } from '@shared/lib/dateFormat';
 
 const languages = [
+  { code: 'el', name: 'Ελληνικά' },
   { code: 'en', name: 'English' },
   { code: 'sv', name: 'Svenska' },
   { code: 'no', name: 'Norsk' },

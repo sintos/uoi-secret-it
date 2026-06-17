@@ -5,6 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 // Import translations
 import {
   en,
+  el,
   sv,
   no,
   de,
@@ -25,6 +26,9 @@ i18n
   .use(LanguageDetector)
   .init({
     resources: {
+      el: {
+        translation: el,
+      },
       en: {
         translation: en,
       },
@@ -68,7 +72,7 @@ i18n
         translation: ro,
       },
     },
-    fallbackLng: 'en',
+    fallbackLng: 'el',
     debug: false,
 
     interpolation: {
@@ -76,7 +80,7 @@ i18n
     },
 
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      order: ['localStorage', 'htmlTag', 'navigator'],
       caches: [], // Don't cache auto-detected language
     },
   });
