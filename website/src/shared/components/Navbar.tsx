@@ -53,8 +53,8 @@ export default function Navbar() {
               href="/"
             >
               <img
-                src={LOGO_URL ?? '/yopass.svg'}
-                alt={APP_NAME ?? 'Yopass'}
+                src={LOGO_URL ?? '/uoi-logo.png'}
+                alt={APP_NAME ?? t('header.appName')}
                 className="h-8 w-8 mr-2 sm:mr-3 shrink-0"
               />
               <span className="truncate">

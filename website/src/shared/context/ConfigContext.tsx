@@ -123,11 +123,11 @@ async function loadConfig(): Promise<Config> {
         APP_NAME:
           typeof data.APP_NAME === 'string' && data.APP_NAME
             ? data.APP_NAME
-            : undefined,
+            : defaultConfig.APP_NAME,
         LOGO_URL:
           typeof data.LOGO_URL === 'string' && data.LOGO_URL
             ? data.LOGO_URL
-            : undefined,
+            : defaultConfig.LOGO_URL,
         PUBLIC_URL:
           typeof data.PUBLIC_URL === 'string' && data.PUBLIC_URL
             ? data.PUBLIC_URL
