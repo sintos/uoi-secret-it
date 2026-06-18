@@ -387,8 +387,10 @@ func (y *Server) configHandler(w http.ResponseWriter, r *http.Request) {
 	if y.PublicURL != "" {
 		config["PUBLIC_URL"] = y.PublicURL
 	}
-	if y.License.Valid && y.LogoURL != "" {
+	if y.LogoURL != "" {
 		config["LOGO_URL"] = y.LogoURL
+	} else {
+		config["LOGO_URL"] = "/uoi-logo.png"
 	}
 
 	oidcEnabled := y.OIDCProvider != nil
@@ -418,10 +420,17 @@ func (y *Server) configHandler(w http.ResponseWriter, r *http.Request) {
 
 		if y.AppName != "" {
 			config["APP_NAME"] = y.AppName
+		} else {
+			config["APP_NAME"] = "Secret.it - Πανεπιστήμιο Ιωαννίνων"
 		}
 	} else {
 		config["THEME_LIGHT"] = "emerald"
 		config["THEME_DARK"] = "dim"
+		if y.AppName != "" {
+			config["APP_NAME"] = y.AppName
+		} else {
+			config["APP_NAME"] = "Secret.it - Πανεπιστήμιο Ιωαννίνων"
+		}
 	}
 
 	if err := json.NewEncoder(w).Encode(config); err != nil {
@@ -429,9 +438,9 @@ func (y *Server) configHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// logoHandler serves the built-in yopass.svg logo.
+// logoHandler serves the built-in application logo.
 func (y *Server) logoHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, filepath.Join(y.AssetPath, "yopass.svg"))
+	http.ServeFile(w, r, filepath.Join(y.AssetPath, "uoi-logo.png"))
 }
 
 // versionHandler returns the server version

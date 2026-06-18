@@ -1876,10 +1876,8 @@ func TestCORSMiddlewareFrontendURLNoPath(t *testing.T) {
 // tests do not reach: MAX_FILE_SIZE, LOGO_URL, OIDC_ENABLED/REQUIRE_AUTH,
 // THEME_CUSTOM_*, APP_NAME, and the unlicensed fallback theme.
 func TestConfigHandler_LicensedBranches(t *testing.T) {
-	t.Run("unlicensed defaults omit custom branding", func(t *testing.T) {
+	t.Run("unlicensed defaults include fork branding", func(t *testing.T) {
 		s := newTestServer(t, &mockDB{}, 1, false)
-		s.LogoURL = "https://cdn.example/logo.svg" // ignored without license
-		s.AppName = "Ignored"                      // ignored without license
 		s.MaxFileSize = 0
 		s.License = LicenseStatus{} // not valid
 
@@ -1895,7 +1893,13 @@ func TestConfigHandler_LicensedBranches(t *testing.T) {
 		if cfg["THEME_LIGHT"] != "emerald" || cfg["THEME_DARK"] != "dim" {
 			t.Fatalf("expected fallback emerald/dim themes, got %v / %v", cfg["THEME_LIGHT"], cfg["THEME_DARK"])
 		}
-		for _, key := range []string{"LOGO_URL", "APP_NAME", "THEME_CUSTOM_LIGHT", "THEME_CUSTOM_DARK", "MAX_FILE_SIZE"} {
+		if cfg["LOGO_URL"] != "/uoi-logo.png" {
+			t.Errorf("LOGO_URL: got %v", cfg["LOGO_URL"])
+		}
+		if cfg["APP_NAME"] != "Secret.it - Πανεπιστήμιο Ιωαννίνων" {
+			t.Errorf("APP_NAME: got %v", cfg["APP_NAME"])
+		}
+		for _, key := range []string{"THEME_CUSTOM_LIGHT", "THEME_CUSTOM_DARK", "MAX_FILE_SIZE"} {
 			if _, ok := cfg[key]; ok {
 				t.Errorf("expected %q to be absent, got %v", key, cfg[key])
 			}
